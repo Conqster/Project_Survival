@@ -4,81 +4,102 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
+    //private GameBehaviour gameManager;
     public float MoveSpeed = 10f;
     public float RotateSpeed = 75f;
-    public float jumpForce = 10f;
+    public float jumpVelocity = 5f;
+    public float DistanceToGround = 0.1f;
+    public float BulletSpeed = 100f; // this variable stores the speed 
 
-    public static int maxJump = 2;
-    //public int currentJump;
-
-    int currentJump = 0;
-    int ability;
-    Inventory inventory;
+    public LayerMask GroundLayer;
+    
+    public bool isJumping;
+    private bool isShooting; // a boolean to check if our player to be shooting 
 
     private float vInput;
     private float hInput;
 
-    public bool onTheGround;
-    public bool isJumping;
+    public GameObject Bullet; //this is used to store the prefab of bullet 
 
-    private Rigidbody playerRb;
-    // Start is called before the first frame update
+    private Rigidbody rb;
+    private CapsuleCollider col;
+
     void Start()
     {
-        playerRb = GetComponent<Rigidbody>();
-        inventory = GetComponent<Inventory>();
+        //gameManager = GameObject.Find("GameManager").GetComponent<GameBehaviour>();
+        rb = GetComponent<Rigidbody>();
+        col = GetComponent<CapsuleCollider>();
+        //HP = GameObject.Find("Enemy");
+        
     }
+   
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.name == "floor")
-        {
-            onTheGround = true;
-            currentJump = 0;
-        }
-
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.name == "floor")
-        {
-           // Gravity(ApplyGravity);
-            onTheGround = false;
-        }
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         vInput = Input.GetAxis("Vertical") * MoveSpeed;
         hInput = Input.GetAxis("Horizontal") * RotateSpeed;
 
+        isJumping |= Input.GetKeyDown(KeyCode.Space);
+        isJumping |= Input.GetButtonDown("Jump");
+        //isShooting |= Input.GetMouseButtonDown(0);  // using the OR logical operator, which returns true if weare pushing the specified button, just like with Input.GetKeyDown
+        //isShooting |= Input.GetKeyDown(KeyCode.LeftControl); 
+        isShooting |= Input.GetButtonDown("Fire1");
+           // GetMouseButtonDown() takes an int parameter to determine which mouse button we want to check for; 0 is the left button, 1 is the right button, and 
+           // and 2 is the middle button or scroll wheel. 
+        /*
         this.transform.Translate(Vector3.forward * vInput * Time.deltaTime);
         this.transform.Rotate(Vector3.up * hInput * Time.deltaTime);
-
-    
-        ability = inventory.MyAbility();
-        
-
-        if (Input.GetKeyDown(KeyCode.Space) && (onTheGround || (maxJump > currentJump && ability !< 25)))
-        {
-            playerRb.AddForce(new Vector3(0, 10, 0), ForceMode.Impulse);
-            currentJump++;
-            ability -= 25;
-            Debug.LogFormat("My current jump is {0} and my ability is at {1}%", currentJump, ability);
-        }
+        */
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         Vector3 rotation = Vector3.up * hInput;
 
         Quaternion angleRot = Quaternion.Euler(rotation * Time.fixedDeltaTime);
 
-        playerRb.MovePosition(this.transform.position + this.transform.forward * vInput * Time.fixedDeltaTime);
+        rb.MovePosition(this.transform.position + this.transform.forward * vInput * Time.fixedDeltaTime);
 
-        playerRb.MoveRotation(playerRb.rotation * angleRot);
+        rb.MoveRotation(rb.rotation * angleRot); 
+
+        if(IsGrounded() && isJumping)
+        {
+            rb.AddForce(Vector3.up * jumpVelocity, ForceMode.Impulse);
+        }
+        isJumping = false;
+
+        if(isShooting)  //to check if player is suppose to be shooting using the isShooting input check variable 
+        {
+            GameObject newBullet = Instantiate(Bullet,this.transform.position + new Vector3(0, 1, 0), this.transform.rotation);
+            // creates a local GameObject variable everytime th eleft mouse button is pressed 
+            // Instantiate() method is used to assign a GameObject to newBullet by pressing in  the Bullect Prefab,
+            // we also used the player capsule position to place the new bullet in front of the player to avoid any collidions 
+
+            Rigidbody BulletRB = newBullet.GetComponent<Rigidbody>();
+            // called GetComponent() to return and store the Rigidbody component on newBullet
+
+            BulletRB.velocity = this.transform.forward * BulletSpeed;
+            // set the velocity property of the rigidbody componenet to the players transform.forward direction multiplied by BulletSpeed 
+            // changing the velocity instead of using AddForce() ensures that gravity doesnt pull our bullets down in arc when fired.
+        }
+
+        isShooting = false;
+    }
+
+    /*void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.name == "Enemy")
+        {
+            gameManager.HP -= 1;
+        }
+    }*/
+
+    private bool IsGrounded()
+    {
+        Vector3 capsuleBottom = new Vector3(col.bounds.center.x, col.bounds.min.y, col.bounds.center.z);
+
+        bool grounded = Physics.CheckCapsule(col.bounds.center, capsuleBottom, DistanceToGround, GroundLayer, QueryTriggerInteraction.Ignore);
+
+        return grounded;
     }
 }

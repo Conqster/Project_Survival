@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class FollowCam : MonoBehaviour
 {
-    public GameObject thePlayer;
-    // Start is called before the first frame update
+    public Vector3 CamOffset = new Vector3(0f, 1.8f, -3.6f);
+    
+
+    private Transform _target;
+
     void Start()
     {
-
+        _target = GameObject.Find("Player").transform;
     }
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        transform.position = new Vector3(thePlayer.transform.position.x, thePlayer.transform.position.y, transform.position.z);
+        this.transform.position = _target.TransformPoint(CamOffset);
+
+        this.transform.LookAt(_target);
     }
+
+  
 }
