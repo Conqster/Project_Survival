@@ -70,7 +70,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         if(isShooting)  //to check if player is suppose to be shooting using the isShooting input check variable 
         {
-            GameObject newBullet = Instantiate(Bullet,this.transform.position + new Vector3(0, 1, 0), this.transform.rotation);
+            GameObject newBullet = Instantiate(Bullet,this.transform.position + new Vector3(0.1f, 0, 0), this.transform.rotation);
             // creates a local GameObject variable everytime th eleft mouse button is pressed 
             // Instantiate() method is used to assign a GameObject to newBullet by pressing in  the Bullect Prefab,
             // we also used the player capsule position to place the new bullet in front of the player to avoid any collidions 
