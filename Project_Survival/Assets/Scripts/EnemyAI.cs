@@ -13,7 +13,7 @@ public class EnemyAI : MonoBehaviour
     
     public float health;
 
-    // patrolling 
+    // Patrolling 
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
@@ -22,8 +22,6 @@ public class EnemyAI : MonoBehaviour
     public float timeBetweenAttacks;
     bool alreadyAttacked;
     public GameObject projectile;
-
-    //[SerializeField] float projectileSpeed = 50f;  
 
     // States 
     public float sightRange, attackRange;
@@ -85,11 +83,8 @@ public class EnemyAI : MonoBehaviour
         if(!alreadyAttacked)
         {
             Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            //Rigidbody rb = Instantiate(projectile, transform.position + new Vector3 (1, 0, 0), transform.rotation).GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
             rb.AddForce(transform.up * 8f, ForceMode.Impulse);
-
-            //rb.velocity = transform.forward * projectileSpeed;
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
