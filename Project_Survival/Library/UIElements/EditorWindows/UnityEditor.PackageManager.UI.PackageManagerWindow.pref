@@ -18,11 +18,7 @@ MonoBehaviour:
   m_Values:
   - '{"m_Value":0.0,"m_LowValue":0.0,"m_HighValue":2147483648.0}'
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
   - '{"m_Value":0.0,"m_LowValue":0.0,"m_HighValue":171.33331298828126}'
-=======
-  - '{"m_Value":0.0,"m_LowValue":0.0,"m_HighValue":89.0}'
->>>>>>> Stashed changes
 =======
   - '{"m_Value":0.0,"m_LowValue":0.0,"m_HighValue":89.0}'
 >>>>>>> Stashed changes
