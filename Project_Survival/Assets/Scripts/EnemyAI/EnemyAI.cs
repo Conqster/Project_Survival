@@ -5,6 +5,9 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
+    public int maxHealth;
+
+    public int currentHealth;
     public NavMeshAgent agent;
 
     public Transform  player;
@@ -31,6 +34,7 @@ public class EnemyAI : MonoBehaviour
     {
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+        currentHealth = maxHealth;
     }
     
     private void Update()
@@ -100,6 +104,11 @@ public class EnemyAI : MonoBehaviour
         health -= damage;
         if (health <= 0) Invoke(nameof(DestroyEnemy), .5f);
     }
+
+    /*public void MaxHealth(int maxHealth)
+    {
+        maxHealth = 100;
+    }*/
 
     private void DestroyEnemy()
     {
