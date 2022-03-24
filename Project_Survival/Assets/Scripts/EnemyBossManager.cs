@@ -8,18 +8,18 @@ namespace S5
     {
         public string bossName;
         UIBossHealthBar bossHealthBar;
-        EnemyAI health;
+        EnemyAI enemyAI;
 
         private void Awake()
         {
             bossHealthBar = FindObjectOfType<UIBossHealthBar>();
-            health = GetComponent<EnemyAI>();
+            enemyAI = GetComponent<EnemyAI>();
         }
 
         private void Start()
         {
             bossHealthBar.SetBossName(bossName);
-            bossHealthBar.SetBossMaxHealth(health.health);
+            bossHealthBar.SetBossMaxHealth(enemyAI.health);
         }
     }
 }
