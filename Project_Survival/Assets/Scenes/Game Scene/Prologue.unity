@@ -4391,7 +4391,11 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -32.6}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_LocalScale: {x: 134.06596, y: 0.5, z: 125.23376}
+=======
+  m_LocalScale: {x: 137.20859, y: 0.5, z: 125.23376}
+>>>>>>> Stashed changes
 =======
   m_LocalScale: {x: 137.20859, y: 0.5, z: 125.23376}
 >>>>>>> Stashed changes
