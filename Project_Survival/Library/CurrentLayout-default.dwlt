@@ -21,8 +21,13 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: Scene
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
+=======
+  m_RootView: {fileID: 4}
+  m_MinSize: {x: 875, y: 763}
+>>>>>>> parent of 6643925 (Lol)
 =======
   m_RootView: {fileID: 4}
   m_MinSize: {x: 875, y: 763}
@@ -103,7 +108,11 @@ MonoBehaviour:
     width: 1920
     height: 997
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_MinSize: {x: 875, y: 300}
+=======
+  m_MinSize: {x: 875, y: 763}
+>>>>>>> parent of 6643925 (Lol)
 =======
   m_MinSize: {x: 875, y: 763}
 >>>>>>> parent of 6643925 (Lol)
@@ -180,11 +189,19 @@ MonoBehaviour:
     width: 1920
     height: 947
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
   controlID: 142
 --- !u!114 &6
+=======
+  m_MinSize: {x: 679, y: 713}
+  m_MaxSize: {x: 14002, y: 18063}
+  vertical: 0
+  controlID: 63
+--- !u!114 &8
+>>>>>>> parent of 6643925 (Lol)
 =======
   m_MinSize: {x: 679, y: 713}
   m_MaxSize: {x: 14002, y: 18063}
@@ -211,6 +228,7 @@ MonoBehaviour:
     x: 0
     y: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 1472
     height: 947
   m_MinSize: {x: 403, y: 492}
@@ -218,6 +236,15 @@ MonoBehaviour:
   vertical: 1
   controlID: 66
 --- !u!114 &7
+=======
+    width: 1499
+    height: 947
+  m_MinSize: {x: 403, y: 713}
+  m_MaxSize: {x: 10001, y: 18063}
+  vertical: 1
+  controlID: 64
+--- !u!114 &9
+>>>>>>> parent of 6643925 (Lol)
 =======
     width: 1499
     height: 947
@@ -246,6 +273,7 @@ MonoBehaviour:
     x: 0
     y: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 1472
     height: 542
   m_MinSize: {x: 403, y: 221}
@@ -253,6 +281,15 @@ MonoBehaviour:
   vertical: 0
   controlID: 67
 --- !u!114 &8
+=======
+    width: 1499
+    height: 676
+  m_MinSize: {x: 403, y: 442}
+  m_MaxSize: {x: 8003, y: 8042}
+  vertical: 0
+  controlID: 65
+--- !u!114 &10
+>>>>>>> parent of 6643925 (Lol)
 =======
     width: 1499
     height: 676
@@ -279,8 +316,13 @@ MonoBehaviour:
     x: 0
     y: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 329
     height: 542
+=======
+    width: 350
+    height: 676
+>>>>>>> parent of 6643925 (Lol)
 =======
     width: 350
     height: 676
@@ -308,15 +350,21 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 329
     y: 0
     width: 1143
     height: 542
 =======
+=======
+>>>>>>> parent of 6643925 (Lol)
     x: 0
     y: 0
     width: 1149
     height: 364
+<<<<<<< HEAD
+>>>>>>> parent of 6643925 (Lol)
+=======
 >>>>>>> parent of 6643925 (Lol)
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
@@ -343,9 +391,15 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     y: 542
     width: 1472
     height: 405
+=======
+    y: 676
+    width: 1499
+    height: 271
+>>>>>>> parent of 6643925 (Lol)
 =======
     y: 676
     width: 1499
@@ -375,6 +429,7 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 1472
     y: 0
     width: 448
@@ -385,11 +440,18 @@ MonoBehaviour:
 =======
     x: 1499
     y: 0
+=======
+    x: 1499
+    y: 0
+>>>>>>> parent of 6643925 (Lol)
     width: 421
     height: 947
   m_MinSize: {x: 276, y: 71}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 20}
+<<<<<<< HEAD
+>>>>>>> parent of 6643925 (Lol)
+=======
 >>>>>>> parent of 6643925 (Lol)
   m_Panes:
   - {fileID: 20}
@@ -428,7 +490,11 @@ MonoBehaviour:
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_TargetSize: {x: 1012, y: 426}
+=======
+  m_TargetSize: {x: 1147, y: 270}
+>>>>>>> parent of 6643925 (Lol)
 =======
   m_TargetSize: {x: 1147, y: 270}
 >>>>>>> parent of 6643925 (Lol)
@@ -447,15 +513,21 @@ MonoBehaviour:
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_HBaseRangeMin: -506
     m_HBaseRangeMax: 506
     m_VBaseRangeMin: -223.5
     m_VBaseRangeMax: 223.5
 =======
+=======
+>>>>>>> parent of 6643925 (Lol)
     m_HBaseRangeMin: -573.5
     m_HBaseRangeMax: 573.5
     m_VBaseRangeMin: -135
     m_VBaseRangeMax: 135
+<<<<<<< HEAD
+>>>>>>> parent of 6643925 (Lol)
+=======
 >>>>>>> parent of 6643925 (Lol)
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
@@ -474,17 +546,23 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
       y: 0
       width: 1012
       height: 447
     m_Scale: {x: 1, y: 1}
     m_Translation: {x: 506, y: 223.5}
 =======
+=======
+>>>>>>> parent of 6643925 (Lol)
       y: 21
       width: 1147
       height: 270
     m_Scale: {x: 1, y: 1}
     m_Translation: {x: 573.5, y: 135}
+<<<<<<< HEAD
+>>>>>>> parent of 6643925 (Lol)
+=======
 >>>>>>> parent of 6643925 (Lol)
     m_MarginLeft: 0
     m_MarginRight: 0
@@ -492,6 +570,7 @@ MonoBehaviour:
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
+<<<<<<< HEAD
 <<<<<<< HEAD
       x: -506
       y: -223.5
@@ -501,6 +580,8 @@ MonoBehaviour:
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 1012, y: 447}
 =======
+=======
+>>>>>>> parent of 6643925 (Lol)
       x: -573.5
       y: -135
       width: 1147
@@ -508,6 +589,9 @@ MonoBehaviour:
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 1147, y: 291}
+<<<<<<< HEAD
+>>>>>>> parent of 6643925 (Lol)
+=======
 >>>>>>> parent of 6643925 (Lol)
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
@@ -537,8 +621,13 @@ MonoBehaviour:
     x: 0
     y: 73
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 328
     height: 521
+=======
+    width: 349
+    height: 655
+>>>>>>> parent of 6643925 (Lol)
 =======
     width: 349
     height: 655
@@ -548,9 +637,15 @@ MonoBehaviour:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
       m_SelectedIDs: 
       m_LastClickedID: 0
       m_ExpandedIDs: e8faffff
+=======
+      m_SelectedIDs: 76410000
+      m_LastClickedID: 16758
+      m_ExpandedIDs: 40fbffff
+>>>>>>> parent of 6643925 (Lol)
 =======
       m_SelectedIDs: 76410000
       m_LastClickedID: 16758
@@ -600,15 +695,21 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 329
     y: 73
     width: 1141
     height: 521
 =======
+=======
+>>>>>>> parent of 6643925 (Lol)
     x: 350
     y: 73
     width: 1147
     height: 343
+<<<<<<< HEAD
+>>>>>>> parent of 6643925 (Lol)
+=======
 >>>>>>> parent of 6643925 (Lol)
   m_ViewDataDictionary: {fileID: 0}
   m_ShowContextualTools: 1
@@ -674,6 +775,7 @@ MonoBehaviour:
     m_Target: {x: -0.06438915, y: 0.93405557, z: -0.21851817, w: -0.27519268}
     speed: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_Value: {x: -0.035362396, y: 0.85060513, z: -0.057804786, w: -0.52142024}
 =======
     m_Value: {x: -0.065073736, y: 0.9324718, z: -0.21372636, w: -0.28387126}
@@ -684,6 +786,13 @@ MonoBehaviour:
 <<<<<<< HEAD
     m_Value: 5.4183216
 =======
+    m_Value: 28.760134
+>>>>>>> parent of 6643925 (Lol)
+=======
+    m_Value: {x: -0.065073736, y: 0.9324718, z: -0.21372636, w: -0.28387126}
+  m_Size:
+    m_Target: 30.05434
+    speed: 2
     m_Value: 28.760134
 >>>>>>> parent of 6643925 (Lol)
   m_Ortho:
@@ -810,9 +919,15 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     y: 615
     width: 1471
     height: 384
+=======
+    y: 749
+    width: 1498
+    height: 250
+>>>>>>> parent of 6643925 (Lol)
 =======
     y: 749
     width: 1498
@@ -833,7 +948,11 @@ MonoBehaviour:
     m_SearchArea: 1
     m_Folders:
 <<<<<<< HEAD
+<<<<<<< HEAD
     - Assets
+=======
+    - Assets/Environment/RPGPP_LT/Models/Nature
+>>>>>>> parent of 6643925 (Lol)
 =======
     - Assets/Environment/RPGPP_LT/Models/Nature
 >>>>>>> parent of 6643925 (Lol)
@@ -843,8 +962,13 @@ MonoBehaviour:
   m_StartGridSize: 96
   m_LastFolders:
 <<<<<<< HEAD
+<<<<<<< HEAD
   - Assets
   m_LastFoldersGridSize: 16
+=======
+  - Assets/Environment/RPGPP_LT/Models/Nature
+  m_LastFoldersGridSize: 96
+>>>>>>> parent of 6643925 (Lol)
 =======
   - Assets/Environment/RPGPP_LT/Models/Nature
   m_LastFoldersGridSize: 96
@@ -854,15 +978,21 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
 <<<<<<< HEAD
+<<<<<<< HEAD
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 464a0000
     m_LastClickedID: 19014
     m_ExpandedIDs: 00000000464a0000484a00004a4a00004c4a00004e4a0000504a0000524a0000544a0000564a0000584a00005a4a00005c4a000000ca9a3b
 =======
+=======
+>>>>>>> parent of 6643925 (Lol)
     scrollPos: {x: 0, y: 62}
     m_SelectedIDs: caaa0000
     m_LastClickedID: 43722
     m_ExpandedIDs: 00000000fa490000fe490000004a0000024a0000044a0000064a0000084a00000a4a00000c4a00000e4a0000104a00003a4a0000746f00007c6f00007e6f0000846f000000ca9a3b
+<<<<<<< HEAD
+>>>>>>> parent of 6643925 (Lol)
+=======
 >>>>>>> parent of 6643925 (Lol)
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -892,7 +1022,11 @@ MonoBehaviour:
     m_SelectedIDs: 
     m_LastClickedID: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_ExpandedIDs: 00000000464a0000484a00004a4a00004c4a00004e4a0000504a0000524a0000544a0000564a0000584a00005a4a00005c4a0000
+=======
+    m_ExpandedIDs: 00000000fa490000fc490000fe490000004a0000024a0000044a0000064a0000084a00000a4a00000c4a00000e4a0000104a0000
+>>>>>>> parent of 6643925 (Lol)
 =======
     m_ExpandedIDs: 00000000fa490000fc490000fe490000004a0000024a0000044a0000064a0000084a00000a4a00000c4a00000e4a0000104a0000
 >>>>>>> parent of 6643925 (Lol)
@@ -997,9 +1131,15 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 1472
     y: 73
     width: 447
+=======
+    x: 1499
+    y: 73
+    width: 420
+>>>>>>> parent of 6643925 (Lol)
 =======
     x: 1499
     y: 73
