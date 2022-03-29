@@ -5,15 +5,15 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    public float wanderSpeed = 4f;
-    public float chaseSpeed = 7f;
     public NavMeshAgent agent;
-    public Transform  player;
-    public LayerMask whatIsGround, whatIsPlayer;
-    public int health;
-    private Animator animator;
 
-    // Patrolling 
+    public Transform  player;
+
+    public LayerMask whatIsGround, whatIsPlayer;
+    
+    public float health;
+
+    // patrolling 
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
@@ -23,14 +23,11 @@ public class EnemyAI : MonoBehaviour
     bool alreadyAttacked;
     public GameObject projectile;
 
+    //[SerializeField] float projectileSpeed = 50f;  
+
     // States 
     public float sightRange, attackRange;
     public bool playerInsightRange, playerInAttackRange;
-
-    public void Start()
-    {
-        animator = GetComponentInChildren<Animator>();
-    }
 
     private void Awake()
     {
@@ -44,12 +41,12 @@ public class EnemyAI : MonoBehaviour
         playerInsightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
        
-    if (!playerInsightRange && !playerInAttackRange) Patrolling();
+    if (!playerInsightRange && !playerInAttackRange) Patroling();
     if (playerInsightRange && !playerInAttackRange) ChasePlayer();
     if (playerInAttackRange && playerInsightRange) AttackPlayer();
     }
 
-    private void Patrolling()
+    private void Patroling()
     {
         if (!walkPointSet) SearchWalkPoint();
 
@@ -73,14 +70,10 @@ public class EnemyAI : MonoBehaviour
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
         
         walkPointSet = true;
-        animator.SetBool("Aware", false);
-        agent.speed =  wanderSpeed;
     }
     private void ChasePlayer()
     {
         agent.SetDestination(player.position);
-        animator.SetBool("Aware", true);
-        agent.speed =  chaseSpeed;
     }
     private void AttackPlayer()
     {
@@ -92,13 +85,15 @@ public class EnemyAI : MonoBehaviour
         if(!alreadyAttacked)
         {
             Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            //Rigidbody rb = Instantiate(projectile, transform.position + new Vector3 (1, 0, 0), transform.rotation).GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
             rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+
+            //rb.velocity = transform.forward * projectileSpeed;
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
-        
     }
     private void ResetAttack()
     {
