@@ -79,6 +79,8 @@ public class EnemyAI : MonoBehaviour
     private void ChasePlayer()
     {
         agent.SetDestination(player.position);
+        animator.SetBool("Aware", true);
+        agent.speed =  chaseSpeed;
     }
     private void AttackPlayer()
     {
@@ -96,8 +98,7 @@ public class EnemyAI : MonoBehaviour
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
-        animator.SetBool("Aware", true);
-        agent.speed =  chaseSpeed;
+        
     }
     private void ResetAttack()
     {

@@ -74,12 +74,14 @@ public class BossAI : MonoBehaviour
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
         
         walkPointSet = true;
-        animator.SetBool("Aware", false);
+        animator.SetBool("BossAware", false);
         agent.speed =  wanderSpeed;
     }
     private void ChasePlayer()
     {
         agent.SetDestination(player.position);
+        animator.SetBool("BossAware", true);
+        agent.speed =  chaseSpeed;
     }
     private void AttackPlayer()
     {
@@ -97,8 +99,7 @@ public class BossAI : MonoBehaviour
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
-        animator.SetBool("Aware", true);
-        agent.speed =  chaseSpeed;
+        
     }
     private void ResetAttack()
     {
