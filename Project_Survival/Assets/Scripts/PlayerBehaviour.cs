@@ -6,10 +6,11 @@ public class PlayerBehaviour : MonoBehaviour
 {
     // jumping has been implemented yet!!!!
     [SerializeField] private float moveSpeed = 10f;
-    [SerializeField] private float jumpSpeed = 0.5f;
+    [SerializeField] private float jumpForce = 0.5f;
     [SerializeField] private float gravity = 2f;
     [SerializeField] private float turnSpeed = 3f;
-    [SerializeField] float dashAbility = 5f;
+
+    float distToGround;
 
 
     //CharacterController _cc;
@@ -17,22 +18,28 @@ public class PlayerBehaviour : MonoBehaviour
 
     //NEW ref Player rigiodbody 
     Rigidbody rb;
+    CapsuleCollider col;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-
+        col = GetComponent<CapsuleCollider>();
+        distToGround = col.bounds.extents.y;
     }
 
-    private void Awake()
+
+    bool isGrounded()
     {
-        //_cc = GetComponent<CharacterController>();
+        return Physics.Raycast(transform.position, Vector3.down, distToGround + 0.1f);
     }
+
 
     private void Update()
     {
         float horizontal = Input.GetAxis("Mouse X");
         transform.Rotate(horizontal * turnSpeed * Vector3.up, Space.World);
+
+
     }
 
     private void FixedUpdate()
@@ -48,37 +55,20 @@ public class PlayerBehaviour : MonoBehaviour
         moveDir = new Vector3(flatMovement.x, moveDir.y, flatMovement.z);
         rb.MovePosition(transform.position + moveDir);
 
-        //trying to implement dashing 
-        //!!!working progress
-        if (Input.GetButton("Fire2"))
-        {
-            DashForward();
-            print("lets go");
-        }
-
-        //private int currentJump = 0;
-        //if (PlayerJumped)
-        //    moveDir.y = jumpSpeed;
-        //else if (_cc.isGrounded)
-        //    moveDir.y = 0f;
-        //else
-        //    moveDir.y -= gravity * Time.deltaTime;
-
-        //_cc.Move(moveDir);
-        //NEW to move the player using move position
-        //rb.MovePosition(flatMovement);
+        WantToJump();
     }
 
-    //private bool PlayerJumped => _cc.isGrounded && Input.GetButton("Fire2");
-
-    //New method for Dash Ability 
-    void DashForward()
+    void WantToJump()
     {
-        //rb.AddForce(transform.forward * dashAbility);
-        //rb.AddForce(Vector3.forward * dashAbility);
-        float dashDistance = 5f;
-        transform.position += transform.forward * dashDistance;
-        // to prevent dashing through walls need to do a gameObject check
+        if ((Input.GetButton("Fire2")) && isGrounded())
+        {
+            print("want to jump");
+            rb.AddForce(transform.up * jumpForce);
+        }
     }
-
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.cyan;
+    //    Gizmos.DrawWireSphere(new Vector3(0,transform.position.y - distToGround), 0.5f);
+    //}
 }
