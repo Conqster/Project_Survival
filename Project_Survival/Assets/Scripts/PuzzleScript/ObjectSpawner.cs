@@ -5,16 +5,18 @@ using UnityEngine;
 public class ObjectSpawner : MonoBehaviour
 {
     private float SpawnTime;
-    [Range(0.0f, 100f)]
+    [Range(0.0f, 10f)]
     [SerializeField] float _moveSpeed;
     [Range(-1, 1)]
     [SerializeField] int _xDir, _yDir, _zDir;
     [Range(0, 10)]
-    [SerializeField] float SpawnTimer = 5f, _destroyTimer = 2f;
+    [SerializeField] float SpawnTimer = 5f, _destroyTimer = 2f, delayBy;
+    [Range(0, 2000)]
+    [SerializeField] float force;
 
     [SerializeField] GameObject objectToSpawn;
     [SerializeField] Transform SpawnPoint;
-    [SerializeField] bool useGravity, defineAxisColour;
+    [SerializeField] bool useGravity,delayStart = false, defineAxisColour, useForce = false;
 
 
     private void Update()
@@ -24,7 +26,10 @@ public class ObjectSpawner : MonoBehaviour
             SpawnTime += Time.deltaTime;
             if (SpawnTime >= SpawnTimer)
             {
-                SpawnObject();
+                if(!delayStart)
+                { SpawnObject(); }
+                else
+                { Invoke("SpawnObject", delayBy); }
                 SpawnTime = 0f;
             }
         }
@@ -56,12 +61,12 @@ public class ObjectSpawner : MonoBehaviour
             }
         }
         Rigidbody objectRb = newObject.GetComponent<Rigidbody>();
+        objectRb.AddForce(_xDir * _moveSpeed, _yDir * _moveSpeed, _zDir * _moveSpeed);
         objectRb.useGravity = useGravity;
-        //if(addMass)
-        //{
-        //    objectRb.mass = mass;
-        //}
-        objectRb.velocity = new Vector3(_xDir, _yDir, _zDir) * _moveSpeed;
+        if(!useForce)
+        { objectRb.velocity = new Vector3(_xDir, _yDir, _zDir) * _moveSpeed; }
+        else
+        { objectRb.AddForce(_xDir * force, _yDir * force, _zDir * force); }
 
         Destroy(newObject, _destroyTimer);
     }
