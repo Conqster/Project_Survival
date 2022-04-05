@@ -7,7 +7,6 @@ public class EnemyAI : MonoBehaviour
 {
     public NavMeshAgent agent;
     public Transform  player;
-    public int health;
     public LayerMask whatIsGround, whatIsPlayer;
     private Animator animator;
     public float wanderSpeed = 4f;
@@ -104,16 +103,5 @@ public class EnemyAI : MonoBehaviour
     private void ResetAttack()
     {
         alreadyAttacked = false;
-    }
-
-     public void TakeDamage(int damage)
-    {
-        health -= damage;
-        if (health <= 0) Invoke(nameof(DestroyEnemy), .5f);
-    }
-
-    private void DestroyEnemy()
-    {
-        Destroy(gameObject);
     }
 }

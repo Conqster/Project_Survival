@@ -9,12 +9,10 @@ public class BossAI : MonoBehaviour
     public NavMeshAgent agent;
     public Transform  player;
     public LayerMask whatIsGround, whatIsPlayer;
-    public int health;
-    private Animator animator;
     public float wanderSpeed = 4f;
     public float chaseSpeed = 7f;
-
     public GameObject rightFist;
+    private Animator animator;
 
     // Patrolling 
     public Vector3 walkPoint;
@@ -24,7 +22,7 @@ public class BossAI : MonoBehaviour
     // Attacking 
     public float timeBetweenAttacks;
     bool alreadyAttacked;
-    public GameObject projectile;
+    //public GameObject projectile;
 
     // States 
     public float sightRange, attackRange;
@@ -87,17 +85,7 @@ public class BossAI : MonoBehaviour
         animator.SetBool("BossAttack", false);
     }
 
-    public void activateFist()
-    {
-        rightFist.GetComponent<Collider>().enabled = true;
-
-    }
-
-    public void deactivateFist()
-    {
-        rightFist.GetComponent<Collider>().enabled = true;
-
-    }
+    
     private void AttackPlayer()
     {
         // make sure enemy doesn't move 
@@ -109,27 +97,18 @@ public class BossAI : MonoBehaviour
         {
             /*Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+            rb.AddForce(transform.up * 8f, ForceMode.Impulse);*/
 
             alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);*/
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
             animator.SetBool("BossAttack", true);
+            
+
         }
         
     }
     private void ResetAttack()
     {
         alreadyAttacked = false;
-    }
-
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-        if (health <= 0) Invoke(nameof(DestroyEnemy), .5f);
-    }
-
-    private void DestroyEnemy()
-    {
-        Destroy(gameObject);
     }
 }

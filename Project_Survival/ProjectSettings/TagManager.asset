@@ -5,17 +5,21 @@ TagManager:
   serializedVersion: 2
   tags:
   - PlayerBody
+  - Enemy
+  - EnemyBullet
+  - RightFist
+  - Boss
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - player
+  - Player
   - Water
   - UI
-  - ground
-  - enemy
-  - testing
-  - 
+  - Ground
+  - Enemy
+  - Testing
+  - EnemyBullet
   - 
   - 
   - 
