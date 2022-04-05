@@ -5,16 +5,14 @@ using UnityEngine;
 public class Teleporter : MonoBehaviour
 {
     [SerializeField] GameObject Location, Player;
+    [SerializeField] string messageToPop;
     public bool InRadius;
 
+    UIManager _uiSystem;
 
-    private void OnCollisionEnter(Collision collision)
+    private void Start()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            print("trying to teleport");
-
-        }
+        _uiSystem = FindObjectOfType<UIManager>();
     }
 
     private void Update()
@@ -28,11 +26,15 @@ public class Teleporter : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         InRadius = true;
+        _uiSystem.popMessagePanel.SetActive(true);
+        // call a method in the ui to pop message 
+        _uiSystem.PopMessage(messageToPop);
     }
 
     private void OnTriggerExit(Collider other)
     {
         InRadius = false;
+        _uiSystem.popMessagePanel.SetActive(false);
     }
 
 }

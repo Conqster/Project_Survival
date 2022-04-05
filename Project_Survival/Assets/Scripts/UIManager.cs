@@ -11,13 +11,15 @@ public class UIManager : MonoBehaviour
     //why cant i use serializefield
     public enum GameState { MainMenu, Playing, Paused, GameOver };
     public GameState currentState;
-    public GameObject mainMenuPanel, pauseMenuPanel, gameOverPanel, inGameUI;
+    public GameObject mainMenuPanel, pauseMenuPanel, gameOverPanel, inGameUI, discoveryPanel, popMessagePanel;
 
-    public TextMeshProUGUI healthText, awardText, awardValveText;
+    public TextMeshProUGUI healthText, awardText, awardValveText, popMessageText;
     public TextMeshProUGUI XpText;
 
     PlayerManager _playerManager;
-    DiscoveryExperience _expRef;
+
+    bool timing;
+    float timer = 1f;
 
     //Game current state variable
 
@@ -38,13 +40,24 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         _playerManager = FindObjectOfType<PlayerManager>();
-        _expRef = FindObjectOfType<DiscoveryExperience>();
     }
 
     void Update()
     {
         PlayerInput();
-        //print(currentState);
+        UpdatePlayerHpUI();
+        UpdatePlayerXpText();
+        if (timing)
+        {
+            timer -= Time.deltaTime;
+            if(timer <= 0)
+            {
+                discoveryPanel.SetActive(false);
+                timer = 1f;
+                timing = false;
+            }
+        }
+        
     }
 
     void PlayerInput()
@@ -161,7 +174,16 @@ public class UIManager : MonoBehaviour
     {
         awardText.text = award;
         awardValveText.text = awardValve.ToString() + "Xp";
+        timing = true;
+        discoveryPanel.SetActive(true);
     }
+
+    public void PopMessage(string message)
+    {
+        popMessageText.text = message;
+    }
+
+    
     public void UpdatePlayerHpUI()
     {
         _playerManager = FindObjectOfType<PlayerManager>();

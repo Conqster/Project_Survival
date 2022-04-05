@@ -8,8 +8,8 @@ public class PlayerManager : MonoBehaviour
     //GameObject _gameUI;
     UIManager _gameUI;
 
-    [Range(0, 100)]
-    [SerializeField] private int playerHealth, playerMaxHealth = 10, PlayerMaxExperience = 50;
+    [Range(0, 5000)]
+    [SerializeField] private int playerHealth, playerMaxHealth = 200, PlayerMaxExperience = 1600;
     [SerializeField] private int currentPlayerExperience = 0;
     // variable get&set property storing player current health
 
@@ -75,6 +75,10 @@ public class PlayerManager : MonoBehaviour
         {
             UpdatePlayerXp(50);
         }
+        if(Input.GetKeyDown(KeyCode.H))
+        {
+            UpdatePlayerHealth(15);
+        }
     }
 
     // call when ever the player gains health item
@@ -107,10 +111,9 @@ public class PlayerManager : MonoBehaviour
         //might another line of code to balance the logic 
         if (CurrentXp % CurrentMaxXp > newPoints && newXp % CurrentMaxXp <= newPoints) // CurrentMaxXp from maxXp
         {
-            print("grant more hp");
             // need to increase max health
-            PlayerMaxHp += 5; // this increase the player maximum health by 5
-            CurrentMaxXp += 10; // this increases the amount xp reqiured to get to next level or earn extra stuffs 
+            PlayerMaxHp += 50; // this increase the player maximum health by 5
+            CurrentMaxXp += 500; // this increases the amount xp reqiured to get to next level or earn extra stuffs 
             CurrentXp = 0; // resets current Xp back to zero 
             // need to increase max abilty & an if statement to check if player can perform any ability 
             // need to inrease enemies health with a small value
