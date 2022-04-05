@@ -93,7 +93,7 @@ public class PlayerBehaviour : MonoBehaviour
         //collision.gameObject.layer
         if(collision.gameObject.layer == 6)
         {
-            print(collision.gameObject.layer);
+            //print(collision.gameObject.layer);
             isGrounded = true;
         }
 

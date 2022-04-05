@@ -8,8 +8,11 @@ public class PlayerManager : MonoBehaviour
     //GameObject _gameUI;
     UIManager _gameUI;
 
+    [Range(0, 100)]
+    [SerializeField] private int playerHealth, playerMaxHealth = 10, PlayerMaxExperience = 50;
+    [SerializeField] private int currentPlayerExperience = 0;
     // variable get&set property storing player current health
-    [SerializeField] private int playerHealth;
+
     public int PlayerHp
     {
         get
@@ -23,42 +26,40 @@ public class PlayerManager : MonoBehaviour
     }
 
     // variable get&set property storing player current maximum health obtainable
-    [SerializeField] private int playerMaxHp = 10;
-    public int PlayerMaxHealth
+    public int PlayerMaxHp
     {
         get
         {
-            return playerMaxHp;
+            return playerMaxHealth;
         }
         set
         {
-            playerMaxHp = value; // used to set new value for private playerMaxHp
+            playerMaxHealth = value; // used to set new value for private playerMaxHp
         }
     }
 
     //variables for current Xp & get&set for current player maximum Xp obtainable
-    [SerializeField] private int currentXp = 0;
     public int CurrentXp
     {
         get
         {
-            return currentXp;
+            return currentPlayerExperience;
         }
         set
         {
-            currentXp = value;
+            currentPlayerExperience = value;
         }
     }
-    [SerializeField] private int PlayerMaxXp = 50;
+    
     public int CurrentMaxXp
     {
         get
         {
-            return PlayerMaxXp;
+            return PlayerMaxExperience;
         }
         set
         {
-            PlayerMaxXp = value;
+            PlayerMaxExperience = value;
         }
     }
 
@@ -66,9 +67,14 @@ public class PlayerManager : MonoBehaviour
     {
         //_gameUI = GameObject.Find("GameUI").GetComponent<UIManager>();
         _gameUI = FindObjectOfType<UIManager>();
-        UpdatePlayerHealth(9); // assign that player health when the game starts 
-        // thinking of way to give playera little xp for starting the game => might just use a collider in the start area an destroy after 
-        UpdatePlayerXp(0); // intialize the player xp 
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            UpdatePlayerXp(50);
+        }
     }
 
     // call when ever the player gains health item
@@ -77,10 +83,10 @@ public class PlayerManager : MonoBehaviour
     {
         //PlayerMaxHealth();
         //stop adding health when health is full 
-        if (PlayerHp < PlayerMaxHealth) // ***playerMaxHealth was changed from PlayerMaxHealth() & PlayerHp from playerHealth
+        if (PlayerHp < PlayerMaxHp) // ***playerMaxHealth was changed from PlayerMaxHealth() & PlayerHp from playerHealth
         {
             // to avoid getting health than max health
-            int healthNeeded = PlayerMaxHealth - PlayerHp; // ***playerMaxHealth was changed from PlayerMaxHealth() & PlayerHp from playerHealth
+            int healthNeeded = PlayerMaxHp - PlayerHp; // ***playerMaxHealth was changed from PlayerMaxHealth() & PlayerHp from playerHealth
             if (healthNeeded > health) // if what player needs is more that health pickup
             {
                 PlayerHp += health; // PlayerHp from playerHealth
@@ -93,15 +99,17 @@ public class PlayerManager : MonoBehaviour
         _gameUI.UpdatePlayerHpUI(); // tell ui manager the player health has been up dated 
     }
 
+    
 
     public void UpdatePlayerXp(int newPoints)
     {
-        int newXp = currentXp + newPoints;
+        int newXp = CurrentXp + newPoints;
+        //might another line of code to balance the logic 
         if (CurrentXp % CurrentMaxXp > newPoints && newXp % CurrentMaxXp <= newPoints) // CurrentMaxXp from maxXp
         {
             print("grant more hp");
             // need to increase max health
-            PlayerMaxHealth += 5; // this increase the player maximum health by 5
+            PlayerMaxHp += 5; // this increase the player maximum health by 5
             CurrentMaxXp += 10; // this increases the amount xp reqiured to get to next level or earn extra stuffs 
             CurrentXp = 0; // resets current Xp back to zero 
             // need to increase max abilty & an if statement to check if player can perform any ability 
@@ -113,7 +121,8 @@ public class PlayerManager : MonoBehaviour
             // need the new Xp be the current xp the player has
             CurrentXp = newXp;
         }
-        _gameUI.UpdatePlayerXpText();
+        print(newXp);
+        //_gameUI.UpdatePlayerXpText();
     }
 
 }
