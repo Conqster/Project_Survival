@@ -13,10 +13,11 @@ public class UIManager : MonoBehaviour
     public GameState currentState;
     public GameObject mainMenuPanel, pauseMenuPanel, gameOverPanel, inGameUI;
 
-    public TextMeshProUGUI healthText;
+    public TextMeshProUGUI healthText, awardText, awardValveText;
     public TextMeshProUGUI XpText;
 
     PlayerManager _playerManager;
+    DiscoveryExperience _expRef;
 
     //Game current state variable
 
@@ -37,6 +38,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         _playerManager = FindObjectOfType<PlayerManager>();
+        _expRef = FindObjectOfType<DiscoveryExperience>();
     }
 
     void Update()
@@ -155,6 +157,11 @@ public class UIManager : MonoBehaviour
         XpText.text = "EXP : " + _playerManager.CurrentXp.ToString();
     }
 
+    public void AwardXpMessage(string award, int awardValve)
+    {
+        awardText.text = award;
+        awardValveText.text = awardValve.ToString() + "Xp";
+    }
     public void UpdatePlayerHpUI()
     {
         _playerManager = FindObjectOfType<PlayerManager>();

@@ -31,6 +31,7 @@ public class DiscoveryExperience : MonoBehaviour
         {
             _playerManager.UpdatePlayerXp(awardExp);
             //ui message goes here and make it take in Xp int and string message
+            Ui.AwardXpMessage(messageToPop, awardExp);
             Destroy(gameObject);
         }
     }
