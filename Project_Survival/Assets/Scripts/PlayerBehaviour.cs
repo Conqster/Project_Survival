@@ -7,31 +7,31 @@ public class PlayerBehaviour : MonoBehaviour
     // jumping has been implemented yet!!!!
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float jumpForce = 0.5f;
-    [SerializeField] private float gravity = 2f;
+    [SerializeField] private float gravity = 9.81f;
     [SerializeField] private float turnSpeed = 3f;
     //player inputs
-    float inputH, inputV;
+    float mouseHorizontal, inputH, inputV, yVel, radius;
     // to reset player back to position when game loads B is the Hotkey
     public bool ResetPlayerToStart = false;
-    Vector3 PlayerStartPoint, offsetPoint;
+    Vector3 inputDirection, PlayerStartPoint, offsetPoint, pos;
 
+    [SerializeField] LayerMask groundLayers, testingLayer;
+    
     float distToGround;
-    [Range(-1, 1)]
-    [SerializeField] float offsetDist;
+    [Range(0, 15)][SerializeField] float pointOffset = 0.8f, groundCheckRadius;
 
-
+     public bool jumpPressed, jumping;
 
     //Animator variables
     [SerializeField]
-    bool useAnimator, useGizmos;
+    bool useAnimator, useGizmos, isGrounded;
     Animator animator;
-    public bool jumping = false;
     int walkHash, stepBackHash, stepRtHash, stepLtHash, jumpHash;
 
 
 
     //CharacterController _cc;
-    Vector3 moveDir, ground;
+    Vector3 moveDir, groundCheck, offset;
 
     //NEW ref Player rigiodbody 
     Rigidbody rb;
@@ -42,8 +42,7 @@ public class PlayerBehaviour : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         col = GetComponent<CapsuleCollider>();
         animator = GetComponent<Animator>();
-        //distToGround = col.bounds.extents.y;
-        distToGround = col.height / 2;
+        distToGround = col.bounds.extents.y;
         PlayerStartPoint = transform.position;
         //converting bool to int, to avoid executing bool multiple time to increse performance
         walkHash = Animator.StringToHash("isWalking");
@@ -53,7 +52,30 @@ public class PlayerBehaviour : MonoBehaviour
         jumpHash = Animator.StringToHash("jump");
     }
 
+    private void Update()
+    {
+        PlayerInputs();
+        CalculateScales();
+        CharacterMovement();
+        BackToStart();
+        ControlAnimation();
 
+        //print(jumping);
+        offset = new Vector3(0, pointOffset, 0);
+        //RaycastHit hit;
+        //Physics.Raycast(transform.position, Vector3.down, out hit, 100000f);
+        //Debug.DrawRay(transform.position, Vector3.down, Color.red);
+        //print(hit.distance);
+
+        
+    }
+
+    void CalculateScales()
+    {
+        radius = col.radius * groundCheckRadius;
+
+        pos = transform.position + Vector3.up * (radius * groundCheckRadius);
+    }
     void BackToStart()
     {
         if(ResetPlayerToStart && Input.GetKeyDown(KeyCode.B))
@@ -61,36 +83,104 @@ public class PlayerBehaviour : MonoBehaviour
             transform.position = PlayerStartPoint;
         }
     }
-    bool isGrounded()
+    //bool isGrounded()
+    //{
+    //    return Physics.CheckSphere(pos, radius, groundLayers);
+    //}
+
+    private void OnCollisionEnter(Collision collision)
     {
-        return Physics.Raycast(transform.position + offsetPoint, Vector3.down, distToGround);
+        //collision.gameObject.layer
+        if(collision.gameObject.layer == 6)
+        {
+            print(collision.gameObject.layer);
+            isGrounded = true;
+        }
+
     }
 
-
-    private void Update()
+    private void OnCollisionExit(Collision collision)
     {
-        BackToStart();
-        float horizontal = Input.GetAxis("Mouse X");
-        transform.Rotate(horizontal * turnSpeed * Vector3.up, Space.World);
+        if (collision.gameObject.layer == 6)
+        {
+            print(collision.gameObject.layer);
+            isGrounded = false;
+        }
+    }
+    private void OnDrawGizmos()
+    {
+        //col = GetComponent<CapsuleCollider>();
+        if (useGizmos)
+        {
+            Gizmos.color = Color.red;
+            //Gizmos.DrawWireSphere(transform.position, distToGround);
+            Gizmos.DrawWireSphere(pos, radius);
+        }
+    }
+    void PlayerInputs()
+    {
+        jumpPressed = Input.GetButtonDown("Jump");
+        mouseHorizontal = Input.GetAxis("Mouse X");
+        inputDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+    }
 
-        if(isGrounded())
+    void CharacterMovement()
+    {
+        transform.Rotate(mouseHorizontal * turnSpeed * Vector3.up, Space.World);
+
+        Vector3 transformDirection = transform.TransformDirection(inputDirection);
+
+        Vector3 flatMovement = moveSpeed * Time.deltaTime * transformDirection;
+
+        moveDir = new Vector3(flatMovement.x, yVel, flatMovement.z);
+
+        //rb.MovePosition(transform.position + moveDir);
+
+        //if(isGrounded && yVel <= 0)
+        //{
+        //    //rb.velocity = rb.useGravity * Time.deltaTime;
+        //    yVel = 0f;
+        //}
+        //else
+        //{
+        //    yVel -= gravity * Time.deltaTime;
+        //}
+        if(jumpPressed)
+        {
+            jumpPressed = true;
+
+            if(isGrounded)
+            {
+                
+                jumping = true;
+                //rb.AddForce(transform.up * jumpForce);
+                rb.velocity = new Vector3(0, 10, 0);
+            }
+        }
+        
+        rb.MovePosition(transform.position + moveDir);
+
+        if(isGrounded && !jumpPressed && jumping)
         {
             jumping = false;
         }
-        offsetPoint = new Vector3(0, offsetDist);
-        // animation
-        if(useAnimator)
+    }
+
+    void ControlAnimation()
+    {
+        //print(inputDirection.x);
+        if (useAnimator)
         {
-            bool moveForward = (inputV > 0);
-            bool moveBack = (inputV < 0);
-            bool stepRight = (inputH > 0);
-            bool stepLeft = (inputH < 0);
+            bool moveForward = (inputDirection.z > 0);
+            bool moveBack = (inputDirection.z < 0);
+            bool stepRight = (inputDirection.x > 0);
+            bool stepLeft = (inputDirection.x < 0);
             //print(stepLeft);
-            if(moveForward && isGrounded())
+            if (moveForward && isGrounded)
             {
                 animator.SetBool(walkHash, true);
             }
-            if(!moveForward || !isGrounded())
+            if (!moveForward || !isGrounded)
             {
                 animator.SetBool(walkHash, false);
             }
@@ -118,57 +208,22 @@ public class PlayerBehaviour : MonoBehaviour
             {
                 animator.SetBool(stepLtHash, false);
             }
-            if (jumping)
-            {
-                animator.SetBool(jumpHash, true);
-            }
-            if (!jumping)
-            {
-                animator.SetBool(jumpHash, false);
-            }
-            print(isGrounded());
+            animator.SetBool(jumpHash, jumping);
+            //animation.SetBool(walkHash, walking);
+            //animation.SetBool(stepBackHash, backStepping);
+            //animation.SetBool(stepRtHash, steppingRight);
+            //animation.SetBool(stepLtHash, steppingLeft);
         }
     }
 
-    private void FixedUpdate()
-    {
-        inputH = Input.GetAxis("Horizontal");
-        inputV = Input.GetAxis("Vertical");
 
-        Vector3 inputDirection = new Vector3(inputH, 0, inputV);
-        Vector3 transformDirection = transform.TransformDirection(inputDirection);
+    //private void FixedUpdate()
+    //{
+    //    //might change this to .velocity
+    //    //rb.MovePosition(transform.position + moveDir);
+    //    rb.MovePosition(transform.position + moveDir);
+    //    //rb.velocity = moveDir;
+    //    //rb.velocity = moveVector
+    //}
 
-        Vector3 flatMovement = moveSpeed * Time.deltaTime * transformDirection;
-
-        moveDir = new Vector3(flatMovement.x, moveDir.y, flatMovement.z);
-        rb.MovePosition(transform.position + moveDir);
-
-        WantToJump();
-    }
-
-    void WantToJump()
-    {
-        if ((Input.GetButton("Fire2")) && isGrounded())
-        {
-            //print("want to jump");
-            rb.AddForce(transform.up * jumpForce);
-            jumping = true;
-            //Invoke("StopJump", 1);
-        }
-        //jumping = false;
-    }
-
-    void StopJump()
-    {
-        jumping = false;
-    }
-    private void OnDrawGizmos()
-    {
-        col = GetComponent<CapsuleCollider>();
-        if (useGizmos)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(transform.position + offsetPoint, distToGround);
-        }
-    }
 }

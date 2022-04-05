@@ -19,7 +19,7 @@ public class Teleporter : MonoBehaviour
 
     private void Update()
     {
-        if(InRadius && Input.GetKey(KeyCode.Space))
+        if(InRadius && Input.GetKey(KeyCode.E))
         {
             Player.transform.position = Location.transform.position;
         }
