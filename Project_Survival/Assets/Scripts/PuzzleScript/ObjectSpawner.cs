@@ -61,6 +61,7 @@ public class ObjectSpawner : MonoBehaviour
             }
         }
         Rigidbody objectRb = newObject.GetComponent<Rigidbody>();
+        //potential bug
         objectRb.AddForce(_xDir * _moveSpeed, _yDir * _moveSpeed, _zDir * _moveSpeed);
         objectRb.useGravity = useGravity;
         if(!useForce)

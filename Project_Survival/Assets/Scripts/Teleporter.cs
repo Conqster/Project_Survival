@@ -6,7 +6,7 @@ public class Teleporter : MonoBehaviour
 {
     [SerializeField] GameObject Location, Player;
     [SerializeField] string messageToPop;
-    public bool InRadius;
+    public bool inRadius;
 
     UIManager _uiSystem;
 
@@ -17,7 +17,7 @@ public class Teleporter : MonoBehaviour
 
     private void Update()
     {
-        if(InRadius && Input.GetKey(KeyCode.E))
+        if(inRadius && Input.GetKey(KeyCode.E))
         {
             Player.transform.position = Location.transform.position;
         }
@@ -25,7 +25,7 @@ public class Teleporter : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        InRadius = true;
+        inRadius = true;
         _uiSystem.popMessagePanel.SetActive(true);
         // call a method in the ui to pop message 
         _uiSystem.PopMessage(messageToPop);
@@ -33,7 +33,7 @@ public class Teleporter : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        InRadius = false;
+        inRadius = false;
         _uiSystem.popMessagePanel.SetActive(false);
     }
 
