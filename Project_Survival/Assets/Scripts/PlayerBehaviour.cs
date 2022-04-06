@@ -225,5 +225,4 @@ public class PlayerBehaviour : MonoBehaviour
     //    //rb.velocity = moveDir;
     //    //rb.velocity = moveVector
     //}
-
 }

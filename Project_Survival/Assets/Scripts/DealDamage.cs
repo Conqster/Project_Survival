@@ -8,19 +8,18 @@ public class DealDamage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print(other.gameObject.tag);
-       if (other.gameObject.tag == "Player")
+        //print(other.gameObject.tag);
+        if (other.gameObject.tag == "Player")
         {
-            print(other.gameObject.tag);
-            //PlayerTakingDamage();
+            //print(other.gameObject.tag);
+            PlayerTakingDamage();
             //print ("playertakingdamage");
-        } 
+        }
     }
-
-   //private void PlayerTakingDamage()
-    //{
-     //   player.UpdatePlayerHealth(-50);
-    //}
+    private void PlayerTakingDamage()
+    {
+        player.UpdatePlayerHealth(-50);
+    }
     /*public void TakeDamage()
     {
         if (PlayerHp <= 0) DestroyPlayer();// players hp when being damage

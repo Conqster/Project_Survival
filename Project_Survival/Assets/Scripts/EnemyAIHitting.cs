@@ -34,7 +34,7 @@ public class EnemyAIHitting : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("Player").transform;
+        player = GameObject.Find("Dean_Rigged").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -81,7 +81,6 @@ public class EnemyAIHitting : MonoBehaviour
         agent.SetDestination(player.position);
         animator.SetBool("SkeletonAware", true);
         agent.speed = chaseSpeed;
-        animator.SetBool("SkeletonAttack", false);
     }
 
 
@@ -103,4 +102,16 @@ public class EnemyAIHitting : MonoBehaviour
     {
         alreadyAttacked = false;
     }
+
+    public void activateFist()
+    {
+        rightFist.GetComponent<Collider>().enabled = true;
+    }
+
+    public void deactivateFist()
+    {
+        rightFist.GetComponent<Collider>().enabled = false;
+    }
+
+
 }

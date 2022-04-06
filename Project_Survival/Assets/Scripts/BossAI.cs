@@ -35,7 +35,7 @@ public class BossAI : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("Player").transform;
+        player = GameObject.Find("Dean_Rigged").transform;
         agent = GetComponent<NavMeshAgent>();
     }
     

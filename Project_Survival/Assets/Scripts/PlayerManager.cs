@@ -125,6 +125,6 @@ public class PlayerManager : MonoBehaviour
             CurrentXp = newXp;
         }
         print(newXp);
-        //_gameUI.UpdatePlayerXpText();
-    }
+        //_gameUI.UpdatePlayerXpText();  
+    }    
 }
