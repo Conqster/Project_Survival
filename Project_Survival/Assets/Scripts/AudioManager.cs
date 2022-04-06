@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public enum SoundFXCat { FootStep, Jump, Death, EnemyHitPlayer,
+    public enum SoundFXCat { FootStep, Jump, BossDeath, EnemyHitPlayer,
     PlayerShoot, Water, EnemyDeath, PlayerDeath, EnemyShoot, BossAttack}
     public GameObject audioObject;
     public AudioClip[] footSteps;
     public AudioClip[] jumpAudio;
-    public AudioClip[] deathAudio;
+    public AudioClip[] bossDeathAudio;
     public AudioClip[] enemyhitPlayerAudio;
     public AudioClip[] playerShootAudio;
     public AudioClip[] waterAudio;
@@ -24,8 +24,8 @@ public class AudioManager : MonoBehaviour
         ControlAudio ca = newAudio.GetComponent<ControlAudio>();
         switch (audioType)
         {
-            case (SoundFXCat.Death):
-            ca.myClip = deathAudio[Random.Range(0, deathAudio.Length)];
+            case (SoundFXCat.BossDeath):
+            ca.myClip = bossDeathAudio[Random.Range(0, bossDeathAudio.Length)];
             break;
             case (SoundFXCat.Water):
             ca.myClip = waterAudio[Random.Range(0, waterAudio.Length)];

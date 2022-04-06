@@ -35,7 +35,7 @@ public class BossAI : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("Dean_Rigged").transform;
+        //player = GameObject.Find("Dean_Rigged").transform;
         agent = GetComponent<NavMeshAgent>();
     }
     
@@ -89,17 +89,27 @@ public class BossAI : MonoBehaviour
     private void AttackPlayer()
     {
         agent.SetDestination(transform.position);
-        transform.LookAt(player);
+        //transform.LookAt(player);
 
         if(!alreadyAttacked)
         {
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            FindObjectOfType<AudioManager>().AudioTrigger(AudioManager.SoundFXCat.BossAttack, transform.position, 1f);
             animator.SetBool("BossAttack", true);
         }   
     }
     private void ResetAttack()
     {
         alreadyAttacked = false;
+    }
+    public void activateBossAttack()
+    {
+        rightFist.GetComponent<Collider>().enabled = true;
+    }
+
+    public void deactivateBossAttack()
+    {
+        rightFist.GetComponent<Collider>().enabled = false;
     }
 }

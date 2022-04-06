@@ -28,6 +28,7 @@ public class EnemyHealth : MonoBehaviour
         }
         if(health <= 0)
         {
+            FindObjectOfType<AudioManager>().AudioTrigger(AudioManager.SoundFXCat.BossDeath, transform.position, 1f);
             Destroy(gameObject);
         }
         if(health > maxHealth)

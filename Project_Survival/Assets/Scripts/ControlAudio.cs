@@ -15,8 +15,6 @@ public class ControlAudio : MonoBehaviour
         audioSource.volume = volume;
         audioSource.Play();
     }
-
-
     void Update()
     {
         if(!audioSource.isPlaying)

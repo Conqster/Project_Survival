@@ -34,7 +34,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("Dean_Rigged").transform;
+        //player = GameObject.Find("Dean_Rigged").transform;
         agent = GetComponent<NavMeshAgent>();
     }
     
@@ -87,16 +87,18 @@ public class EnemyAI : MonoBehaviour
         // make sure enemy doesn't move 
         agent.SetDestination(transform.position);
 
-        transform.LookAt(player);
+        //transform.LookAt(player);
 
         if(!alreadyAttacked)
         {
             Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+            rb.AddForce(transform.forward * 12f, ForceMode.Impulse);
+            rb.AddForce(transform.up * 3f, ForceMode.Impulse);
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            FindObjectOfType<AudioManager>().AudioTrigger(AudioManager.SoundFXCat.EnemyShoot, transform.position, 1f);
+            animator.SetBool("Attack", true);
         }
         
     }

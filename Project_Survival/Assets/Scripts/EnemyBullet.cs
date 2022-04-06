@@ -21,6 +21,7 @@ public class EnemyBullet : MonoBehaviour
 
     private void PlayerTakingDamage()
     {
+        FindObjectOfType<AudioManager>().AudioTrigger(AudioManager.SoundFXCat.Jump, transform.position, 1f);
         player.UpdatePlayerHealth(-50);
     }
 }

@@ -93,6 +93,7 @@ public class PlayerBehaviour : MonoBehaviour
         //collision.gameObject.layer
         if(collision.gameObject.layer == 6)
         {
+
             //print(collision.gameObject.layer);
             isGrounded = true;
         }
@@ -151,7 +152,7 @@ public class PlayerBehaviour : MonoBehaviour
 
             if(isGrounded)
             {
-                
+                FindObjectOfType<AudioManager>().AudioTrigger(AudioManager.SoundFXCat.Jump, transform.position, 1f);
                 jumping = true;
                 //rb.AddForce(transform.up * jumpForce);
                 rb.velocity = new Vector3(0, 10, 0);
@@ -177,7 +178,7 @@ public class PlayerBehaviour : MonoBehaviour
             bool stepLeft = (inputDirection.x < 0);
             //print(stepLeft);
             if (moveForward && isGrounded)
-            {
+            {   
                 animator.SetBool(walkHash, true);
             }
             if (!moveForward || !isGrounded)

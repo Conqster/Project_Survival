@@ -20,6 +20,7 @@ public class DealDamage : MonoBehaviour
         {
             //print(other.gameObject.tag);
             //print ("playertakingdamage");
+            FindObjectOfType<AudioManager>().AudioTrigger(AudioManager.SoundFXCat.EnemyHitPlayer, transform.position, 1f);
             _playerManger.UpdatePlayerHealth(-dealDamage);
         }
     }

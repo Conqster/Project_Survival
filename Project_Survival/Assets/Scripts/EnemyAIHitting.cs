@@ -98,6 +98,7 @@ public class EnemyAIHitting : MonoBehaviour
         {
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            FindObjectOfType<AudioManager>().AudioTrigger(AudioManager.SoundFXCat.EnemyShoot, transform.position, 1f);
             animator.SetBool("SkeletonAttack", true);
         }
 
@@ -123,6 +124,4 @@ public class EnemyAIHitting : MonoBehaviour
     {
         rightFist.GetComponent<Collider>().enabled = false;
     }
-
-
 }
