@@ -73,13 +73,13 @@ public class EnemyAI : MonoBehaviour
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
         
         walkPointSet = true;
-        animator.SetBool("Aware", false);
+        animator.SetBool("SkeletonAware", false);
         agent.speed =  wanderSpeed;
     }
     private void ChasePlayer()
     {
         agent.SetDestination(player.position);
-        animator.SetBool("Aware", true);
+        animator.SetBool("SkeletonAware", true);
         agent.speed =  chaseSpeed;
     }
     private void AttackPlayer()
@@ -97,8 +97,8 @@ public class EnemyAI : MonoBehaviour
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
-            FindObjectOfType<AudioManager>().AudioTrigger(AudioManager.SoundFXCat.EnemyShoot, transform.position, 1f);
-            animator.SetBool("Attack", true);
+            FindObjectOfType<AudioManager>().AudioTrigger(AudioManager.SoundFXCat.SkeletonAttack, transform.position, 1f);
+            animator.SetBool("SkeletonAttack", true);
         }
         
     }

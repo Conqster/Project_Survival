@@ -10,6 +10,7 @@ TagManager:
   - Boss
   - RightFist
   - EnemyAttack
+  - Skeleton
   layers:
   - Default
   - TransparentFX

@@ -10,9 +10,13 @@ public class BulletBehaviour : MonoBehaviour
     int _bulletDamage;
     PlayerManager _playerManager;
     EnemyHealth _enemyHp;
+    BossHealth _bossHp;
+    SkeletonHealth _skeletonHp;
     void Start()
    {
         _playerManager = FindObjectOfType<PlayerManager>();
+        _bossHp = FindObjectOfType<BossHealth>();
+        _skeletonHp = FindObjectOfType<SkeletonHealth>();
         _enemyHp = FindObjectOfType<EnemyHealth>();
         _bulletDamage = _playerManager.bulletDamage;
        Destroy(gameObject, OnScreenDelay);
@@ -35,6 +39,16 @@ public class BulletBehaviour : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             _enemyHp.health -= _bulletDamage;
+            Destroy(gameObject);
+        }
+        if (collision.gameObject.tag == "Boss")
+        {
+            _bossHp.bosshealth -= _bulletDamage;
+            Destroy(gameObject);
+        }
+        if (collision.gameObject.tag == "Skeleton")
+        {
+            _skeletonHp.skeltonhealth -= _bulletDamage;
             Destroy(gameObject);
         }
     }

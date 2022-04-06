@@ -21,15 +21,15 @@ public class EnemyHealth : MonoBehaviour
     }
     private void Update()
     {
-        print(health);
+        //print(health);
         slider.value = CalculateHealth();
         if(health < maxHealth)
         {
             healthBarUI.SetActive(true);
         }
-        if(health <= 0)
+        if (health <= 0)
         {
-            FindObjectOfType<AudioManager>().AudioTrigger(AudioManager.SoundFXCat.BossDeath, transform.position, 1f);
+            FindObjectOfType<AudioManager>().AudioTrigger(AudioManager.SoundFXCat.EnemyDeath, transform.position, 1f);
             Destroy(gameObject);
         }
         if(health > maxHealth)
