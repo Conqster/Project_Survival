@@ -14,6 +14,7 @@ public class EnemyAIHitting : MonoBehaviour
     public GameObject rightFist;
     private Animator animator;
 
+    
     // Patrolling 
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -34,7 +35,9 @@ public class EnemyAIHitting : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("Dean_Rigged").transform;
+        //player = GameObject.Find("Dean_Rigged").transform;
+        //player = GetComponent<Transform>();
+        //player = GameObject.Find("Player_Body").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -47,6 +50,7 @@ public class EnemyAIHitting : MonoBehaviour
         if (!playerInsightRange && !playerInAttackRange) Patrolling();
         if (playerInsightRange && !playerInAttackRange) ChasePlayer();
         if (playerInAttackRange && playerInsightRange) AttackPlayer();
+
     }
 
     private void Patrolling()
@@ -88,7 +92,7 @@ public class EnemyAIHitting : MonoBehaviour
     {
         agent.SetDestination(transform.position);
 
-        transform.LookAt(player);
+        //transform.LookAt(player);
 
         if (!alreadyAttacked)
         {
@@ -97,6 +101,13 @@ public class EnemyAIHitting : MonoBehaviour
             animator.SetBool("SkeletonAttack", true);
         }
 
+    }
+
+    private void OnDrawGizmos()
+    {
+        Vector3 _player = player.transform.position;
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireSphere(_player, 1);
     }
     private void ResetAttack()
     {

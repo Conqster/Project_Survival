@@ -25,16 +25,22 @@ public class Teleporter : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        inRadius = true;
-        _uiSystem.popMessagePanel.SetActive(true);
-        // call a method in the ui to pop message 
-        _uiSystem.PopMessage(messageToPop);
+        if(other.gameObject.tag == "Player")
+        {
+            inRadius = true;
+            _uiSystem.popMessagePanel.SetActive(true);
+            // call a method in the ui to pop message 
+            _uiSystem.PopMessage(messageToPop);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        inRadius = false;
-        _uiSystem.popMessagePanel.SetActive(false);
+        if(other.gameObject.tag == "Player")
+        {
+            inRadius = false;
+            _uiSystem.popMessagePanel.SetActive(false);
+        }
     }
 
 }

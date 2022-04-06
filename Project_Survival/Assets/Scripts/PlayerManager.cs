@@ -79,6 +79,7 @@ public class PlayerManager : MonoBehaviour
         {
             UpdatePlayerHealth(15);
         }
+        //print(playerHealth);
     }
 
     // call when ever the player gains health item
@@ -87,8 +88,9 @@ public class PlayerManager : MonoBehaviour
     {
         //PlayerMaxHealth();
         //stop adding health when health is full 
-        if (PlayerHp < PlayerMaxHp) // ***playerMaxHealth was changed from PlayerMaxHealth() & PlayerHp from playerHealth
+        if (PlayerHp <= PlayerMaxHp) // ***playerMaxHealth was changed from PlayerMaxHealth() & PlayerHp from playerHealth
         {
+            //print("i'm been called");
             // to avoid getting health than max health
             int healthNeeded = PlayerMaxHp - PlayerHp; // ***playerMaxHealth was changed from PlayerMaxHealth() & PlayerHp from playerHealth
             if (healthNeeded > health) // if what player needs is more that health pickup

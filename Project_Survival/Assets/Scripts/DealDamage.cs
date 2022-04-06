@@ -4,22 +4,27 @@ using UnityEngine;
 
 public class DealDamage : MonoBehaviour
 {
-    PlayerManager player;
+    [Range(1, 200)]
+    [SerializeField] int dealDamage = 50;
+    PlayerManager _playerManger;
 
+
+    private void Start()
+    {
+        _playerManger = FindObjectOfType<PlayerManager>(); 
+    }
     private void OnTriggerEnter(Collider other)
     {
         //print(other.gameObject.tag);
         if (other.gameObject.tag == "Player")
         {
             //print(other.gameObject.tag);
-            PlayerTakingDamage();
             //print ("playertakingdamage");
+            _playerManger.UpdatePlayerHealth(-dealDamage);
         }
     }
-    private void PlayerTakingDamage()
-    {
-        player.UpdatePlayerHealth(-50);
-    }
+    
+
     /*public void TakeDamage()
     {
         if (PlayerHp <= 0) DestroyPlayer();// players hp when being damage
