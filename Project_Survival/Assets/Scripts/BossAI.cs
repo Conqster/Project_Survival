@@ -84,7 +84,6 @@ public class BossAI : MonoBehaviour
         agent.SetDestination(player.position);
         animator.SetBool("BossAware", true);
         agent.speed =  chaseSpeed;
-        animator.SetBool("BossAttack", false);
     }
 
     private void AttackPlayer()
