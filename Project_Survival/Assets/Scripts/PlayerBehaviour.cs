@@ -17,8 +17,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     [SerializeField] LayerMask groundLayers, testingLayer;
     
-    float distToGround;
-    [Range(0, 15)][SerializeField] float pointOffset = 0.8f, groundCheckRadius;
+    //float distToGround;
+    //[Range(0, 15)][SerializeField] float pointOffset = 0.8f, groundCheckRadius;
 
      public bool jumpPressed, jumping;
 
@@ -35,6 +35,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     //NEW ref Player rigiodbody 
     Rigidbody rb;
+    //CapsuleCollider col;
     CapsuleCollider col;
 
     private void Start()
@@ -42,7 +43,7 @@ public class PlayerBehaviour : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         col = GetComponent<CapsuleCollider>();
         animator = GetComponent<Animator>();
-        distToGround = col.bounds.extents.y;
+        //distToGround = col.bounds.extents.y;
         PlayerStartPoint = transform.position;
         //converting bool to int, to avoid executing bool multiple time to increse performance
         walkHash = Animator.StringToHash("isWalking");
@@ -55,13 +56,13 @@ public class PlayerBehaviour : MonoBehaviour
     private void Update()
     {
         PlayerInputs();
-        CalculateScales();
+        //CalculateScales();
         CharacterMovement();
         BackToStart();
         ControlAnimation();
 
         //print(jumping);
-        offset = new Vector3(0, pointOffset, 0);
+        //offset = new Vector3(0, pointOffset, 0);
         //RaycastHit hit;
         //Physics.Raycast(transform.position, Vector3.down, out hit, 100000f);
         //Debug.DrawRay(transform.position, Vector3.down, Color.red);
@@ -70,12 +71,12 @@ public class PlayerBehaviour : MonoBehaviour
         
     }
 
-    void CalculateScales()
-    {
-        radius = col.radius * groundCheckRadius;
+    //void CalculateScales()
+    //{
+    //    radius = col.radius * groundCheckRadius;
 
-        pos = transform.position + Vector3.up * (radius * groundCheckRadius);
-    }
+    //    pos = transform.position + Vector3.up * (radius * groundCheckRadius);
+    //}
     void BackToStart()
     {
         if(ResetPlayerToStart && Input.GetKeyDown(KeyCode.B))
@@ -177,11 +178,11 @@ public class PlayerBehaviour : MonoBehaviour
             bool stepRight = (inputDirection.x > 0);
             bool stepLeft = (inputDirection.x < 0);
             //print(stepLeft);
-            if (moveForward && isGrounded)
+            if (moveForward)
             {   
                 animator.SetBool(walkHash, true);
             }
-            if (!moveForward || !isGrounded)
+            if (!moveForward)
             {
                 animator.SetBool(walkHash, false);
             }

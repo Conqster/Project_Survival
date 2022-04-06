@@ -168,7 +168,7 @@ public class UIManager : MonoBehaviour
     public void UpdatePlayerXpText()
     {
         XpText.text = "EXP : " + _playerManager.CurrentXp.ToString();
-        playerLevelText.text = _playerManager.playerLevel.ToString();
+        playerLevelText.text = "Level: " + _playerManager.playerLevel.ToString();
     }
 
     public void AwardXpMessage(string award, int awardValve)

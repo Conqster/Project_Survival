@@ -79,6 +79,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
+        print(playerBattery);
         if(Input.GetKeyDown(KeyCode.P))
         {
             UpdatePlayerXp(50);
