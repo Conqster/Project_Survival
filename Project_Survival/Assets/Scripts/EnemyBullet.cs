@@ -21,6 +21,6 @@ public class EnemyBullet : MonoBehaviour
 
     private void PlayerTakingDamage()
     {
-        player.UpdatePlayerHealth(-2);
+        player.UpdatePlayerHealth(-50);
     }
 }

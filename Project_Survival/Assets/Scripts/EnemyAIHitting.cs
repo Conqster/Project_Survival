@@ -87,7 +87,6 @@ public class EnemyAIHitting : MonoBehaviour
 
     private void AttackPlayer()
     {
-        // make sure enemy doesn't move 
         agent.SetDestination(transform.position);
 
         transform.LookAt(player);

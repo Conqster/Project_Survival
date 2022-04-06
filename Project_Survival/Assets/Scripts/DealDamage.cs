@@ -4,21 +4,20 @@ using UnityEngine;
 
 public class DealDamage : MonoBehaviour
 {
-    BossAI boss;
     PlayerManager player;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "RightFist")
+       if (other.gameObject.tag == "EnemyAttack")
         {
             PlayerTakingDamage();
-            print("playertakingdamage");
-        }
+            print ("playertakingdamage");
+        } 
     }
 
     private void PlayerTakingDamage()
     {
-        player.UpdatePlayerHealth(-5);
+        player.UpdatePlayerHealth(-50);
     }
     /*public void TakeDamage()
     {

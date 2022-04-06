@@ -7,8 +7,9 @@ TagManager:
   - PlayerBody
   - Enemy
   - EnemyBullet
-  - RightFist
   - Boss
+  - RightFist
+  - EnemyAttack
   layers:
   - Default
   - TransparentFX
