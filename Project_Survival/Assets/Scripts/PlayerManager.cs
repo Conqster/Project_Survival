@@ -127,19 +127,4 @@ public class PlayerManager : MonoBehaviour
         print(newXp);
         //_gameUI.UpdatePlayerXpText();
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "EnemyAttack")
-        {
-            PlayerTakingDamage();
-            print("playertakingdamage");
-        }
-    }
-
-    private void PlayerTakingDamage()
-    {
-        UpdatePlayerHealth(-50);
-    }
-
 }
