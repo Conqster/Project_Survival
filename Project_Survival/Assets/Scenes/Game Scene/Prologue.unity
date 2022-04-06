@@ -2388,6 +2388,7 @@ MonoBehaviour:
     m_Bits: 256
   jumpPressed: 0
   jumping: 0
+  firePressed: 0
   useAnimator: 1
   useGizmos: 1
   isGrounded: 0
@@ -4595,6 +4596,7 @@ MonoBehaviour:
     m_Bits: 0
   jumpPressed: 0
   jumping: 0
+  firePressed: 0
   useAnimator: 0
   useGizmos: 0
   isGrounded: 0
@@ -6496,6 +6498,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1065038269}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1077745862
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1077745863}
+  m_Layer: 3
+  m_Name: Fire Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1077745863
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077745862}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.229, z: 0.605}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 543450652291781082}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1082992251
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6632,6 +6664,7 @@ MonoBehaviour:
   PlayerMaxExperience: 1600
   currentPlayerExperience: 0
   battery: 0
+  bulletDmg: 20
 --- !u!4 &1110254133
 Transform:
   m_ObjectHideFlags: 0
@@ -8666,7 +8699,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1630729082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9874,7 +9907,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!195 &1865741071
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -12740,7 +12773,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148290423648}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -40.68, y: 4.2, z: -9.83}
+  m_LocalPosition: {x: 23.92, y: 1.36, z: -9.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4006149450291979030}
@@ -12761,6 +12794,7 @@ Transform:
   - {fileID: 5384284895314457635}
   - {fileID: 247613406352243350}
   - {fileID: 924801415}
+  - {fileID: 1077745863}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13093,6 +13127,7 @@ GameObject:
   - component: {fileID: 428392910}
   - component: {fileID: 428392913}
   - component: {fileID: 919132148290423649}
+  - component: {fileID: 919132148290423650}
   m_Layer: 3
   m_Name: Dean_Rigged
   m_TagString: Player
@@ -13114,6 +13149,23 @@ CapsuleCollider:
   m_Height: 1.781085
   m_Direction: 1
   m_Center: {x: 0, y: 0.9123341, z: 0}
+--- !u!114 &919132148290423650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148290423648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8694cd0bb61092a43b11557aa45d6ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bullet: {fileID: 971004909377176687, guid: 2b76b83dbcd75df4989cae475cdccdee, type: 3}
+  FireBullet: {fileID: 1077745863}
+  bulletSpeed: 50
+  firePressed: 0
+  useGizmos: 1
 --- !u!1 &953276377661879063
 GameObject:
   m_ObjectHideFlags: 0

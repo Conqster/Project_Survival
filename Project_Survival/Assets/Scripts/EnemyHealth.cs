@@ -21,6 +21,7 @@ public class EnemyHealth : MonoBehaviour
     }
     private void Update()
     {
+        print(health);
         slider.value = CalculateHealth();
         if(health < maxHealth)
         {

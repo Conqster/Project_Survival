@@ -13,8 +13,11 @@ public class PlayerManager : MonoBehaviour
     [Range(0, 5000)]
     [SerializeField] private int playerHealth, playerMaxHealth = 200, PlayerMaxExperience = 1600;
     [SerializeField] private int currentPlayerExperience = 0, battery;
-    // variable get&set property storing player current health
 
+    [SerializeField] int bulletDmg = 20;
+
+    public int bulletDamage { get { return bulletDmg; } }
+    // variable get&set property storing player current health
     public int PlayerHp
     {
         get
@@ -79,7 +82,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        print(playerBattery);
+        //print(playerBattery);
         if(Input.GetKeyDown(KeyCode.P))
         {
             UpdatePlayerXp(50);

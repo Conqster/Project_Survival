@@ -16,11 +16,9 @@ public class PlayerBehaviour : MonoBehaviour
     Vector3 inputDirection, PlayerStartPoint, offsetPoint, pos;
 
     [SerializeField] LayerMask groundLayers, testingLayer;
-    
-    //float distToGround;
-    //[Range(0, 15)][SerializeField] float pointOffset = 0.8f, groundCheckRadius;
 
-     public bool jumpPressed, jumping;
+
+     public bool jumpPressed, jumping, firePressed;
 
     //Animator variables
     [SerializeField]
@@ -84,6 +82,8 @@ public class PlayerBehaviour : MonoBehaviour
             transform.position = PlayerStartPoint;
         }
     }
+
+
     //bool isGrounded()
     //{
     //    return Physics.CheckSphere(pos, radius, groundLayers);
