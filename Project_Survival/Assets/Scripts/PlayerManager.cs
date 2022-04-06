@@ -8,9 +8,11 @@ public class PlayerManager : MonoBehaviour
     //GameObject _gameUI;
     UIManager _gameUI;
 
+    public int playerLevel;
+
     [Range(0, 5000)]
     [SerializeField] private int playerHealth, playerMaxHealth = 200, PlayerMaxExperience = 1600;
-    [SerializeField] private int currentPlayerExperience = 0;
+    [SerializeField] private int currentPlayerExperience = 0, battery;
     // variable get&set property storing player current health
 
     public int PlayerHp
@@ -62,6 +64,12 @@ public class PlayerManager : MonoBehaviour
             PlayerMaxExperience = value;
         }
     }
+    //NEW i will try to comment out the main variables to see it works 
+    public int playerBattery
+    {
+        get { return battery; }
+        private set { battery = value; }
+    }
 
     private void Start()
     {
@@ -107,26 +115,53 @@ public class PlayerManager : MonoBehaviour
 
     
 
+    //public void UpdatePlayerXp(int newPoints)
+    //{
+    //    int newXp = CurrentXp + newPoints;
+    //    //might another line of code to balance the logic 
+    //    if (CurrentXp % CurrentMaxXp > newPoints && newXp % CurrentMaxXp <= newPoints) // CurrentMaxXp from maxXp
+    //    {
+    //        // need to increase max health
+    //        PlayerMaxHp += 50; // this increase the player maximum health by 5
+    //        CurrentMaxXp += 500; // this increases the amount xp reqiured to get to next level or earn extra stuffs 
+    //        CurrentXp = 0; // resets current Xp back to zero 
+    //        // need to increase max abilty & an if statement to check if player can perform any ability 
+    //        // need to inrease enemies health with a small value
+    //        // increase AI awareness 
+    //    }
+    //    else
+    //    {
+    //        // need the new Xp be the current xp the player has
+    //        CurrentXp = newXp;
+    //    }
+    //    print(newXp);
+    //    //_gameUI.UpdatePlayerXpText();  
+    //}    
+
     public void UpdatePlayerXp(int newPoints)
     {
-        int newXp = CurrentXp + newPoints;
-        //might another line of code to balance the logic 
-        if (CurrentXp % CurrentMaxXp > newPoints && newXp % CurrentMaxXp <= newPoints) // CurrentMaxXp from maxXp
+        int newCurrentXp = CurrentXp + newPoints;
+        if(newCurrentXp > CurrentMaxXp)
         {
-            // need to increase max health
-            PlayerMaxHp += 50; // this increase the player maximum health by 5
-            CurrentMaxXp += 500; // this increases the amount xp reqiured to get to next level or earn extra stuffs 
-            CurrentXp = 0; // resets current Xp back to zero 
-            // need to increase max abilty & an if statement to check if player can perform any ability 
-            // need to inrease enemies health with a small value
-            // increase AI awareness 
+            //increace Player max health
+            PlayerMaxHp += 50;
+            //increase next max experience obtainable
+            CurrentMaxXp += 500;
+            //reset current experience to zero
+            CurrentXp = 0;
+            // move up a level
+            playerLevel += 1;
+            // increse enemies damage
         }
         else
         {
-            // need the new Xp be the current xp the player has
-            CurrentXp = newXp;
+            CurrentXp = newCurrentXp;
         }
-        print(newXp);
-        //_gameUI.UpdatePlayerXpText();  
-    }    
+        _gameUI.UpdatePlayerXpText(); // use for experience and level up
+    }
+
+    public void BatteryInventory(int batteryPicked)
+    {
+        battery += batteryPicked;
+    }
 }

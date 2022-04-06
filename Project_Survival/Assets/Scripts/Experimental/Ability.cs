@@ -4,15 +4,7 @@ using UnityEngine;
 
 public class Ability : MonoBehaviour
 {
-    public int abilityRatio;
+    PlayerManager _playerManager;
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.name == "player")
-        {
-            Inventory.AddAbility(abilityRatio);
-            Debug.LogFormat("Player picked up - {0}", abilityRatio);
-            Destroy(gameObject);
-        }
-    }
+    
 }

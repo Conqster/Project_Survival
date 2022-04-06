@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour
     public GameObject mainMenuPanel, pauseMenuPanel, gameOverPanel, inGameUI, discoveryPanel, popMessagePanel;
 
     public TextMeshProUGUI healthText, awardText, awardValveText, popMessageText;
-    public TextMeshProUGUI XpText;
+    public TextMeshProUGUI XpText, playerLevelText;
 
     PlayerManager _playerManager;
 
@@ -168,6 +168,7 @@ public class UIManager : MonoBehaviour
     public void UpdatePlayerXpText()
     {
         XpText.text = "EXP : " + _playerManager.CurrentXp.ToString();
+        playerLevelText.text = _playerManager.playerLevel.ToString();
     }
 
     public void AwardXpMessage(string award, int awardValve)
