@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
     //why cant i use serializefield
     public enum GameState { MainMenu, Playing, Paused, GameOver };
     public GameState currentState;
-    public GameObject mainMenuPanel, pauseMenuPanel, gameOverPanel, inGameUI, discoveryPanel, popMessagePanel;
+    public GameObject mainMenuPanel, pauseMenuPanel, gameOverPanel, inGameUI, discoveryPanel, popMessagePanel, creditPanel;
 
     public TextMeshProUGUI healthText, awardText, awardValveText, popMessageText;
     public TextMeshProUGUI XpText, playerLevelText;
@@ -139,7 +139,7 @@ public class UIManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("FirstLevel");
+        SceneManager.LoadScene("Prologue");
         SetGameState(GameState.Playing);
     }
 
@@ -149,7 +149,10 @@ public class UIManager : MonoBehaviour
         SetGameState(GameState.MainMenu);
     }
 
-
+    public void Credits()
+    {
+        creditPanel.SetActive(true);
+    }
     public void PauseGame()
     {
         SetGameState(GameState.Paused);

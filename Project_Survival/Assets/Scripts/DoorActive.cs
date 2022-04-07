@@ -33,6 +33,7 @@ public class DoorActive : MonoBehaviour
         if(openDoor)
         {
             Door.position = Vector3.Lerp(Door.position, NewPosition.position, 0.1f);
+            Invoke("DemoComplete", 3f);
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -60,6 +61,11 @@ public class DoorActive : MonoBehaviour
             }
 
         }
+    }
+
+    void DemoComplete()
+    {
+        _uiSystem.GameOver();
     }
 
     void GetInput()

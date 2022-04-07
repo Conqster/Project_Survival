@@ -22,7 +22,7 @@ public class BulletBehaviour : MonoBehaviour
        Destroy(gameObject, OnScreenDelay);
 
         MeshRenderer bulletMr = GetComponent<MeshRenderer>();
-        if (_bulletDamage < 20)
+        if (_bulletDamage < 21)
         {
             bulletMr.material.SetColor("_Color", Color.green);
         }

@@ -16,7 +16,7 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField] int bulletDmg = 20;
 
-    public int bulletDamage { get { return bulletDmg; } }
+    public int bulletDamage { get { return bulletDmg; }  }
     // variable get&set property storing player current health
     public int PlayerHp
     {
@@ -67,6 +67,8 @@ public class PlayerManager : MonoBehaviour
             PlayerMaxExperience = value;
         }
     }
+
+    
     //NEW i will try to comment out the main variables to see it works 
     public int playerBattery
     {
@@ -82,7 +84,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        //print(playerBattery);
+        CheckOnPlayerHp();
         if(Input.GetKeyDown(KeyCode.P))
         {
             UpdatePlayerXp(50);
@@ -92,6 +94,14 @@ public class PlayerManager : MonoBehaviour
             UpdatePlayerHealth(15);
         }
         //print(playerHealth);
+    }
+
+    void CheckOnPlayerHp()
+    {
+        if(PlayerHp < 0)
+        {
+            _gameUI.GameOver();
+        }
     }
 
     // call when ever the player gains health item

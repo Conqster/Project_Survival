@@ -7,16 +7,34 @@ public class KillZone : MonoBehaviour
     [SerializeField] Transform ResetPlayer;
     [SerializeField] Transform Player;
 
+    [SerializeField] bool ignore;
     private void Start()
     {
         Player = Player.GetComponent<Transform>();
     }
-
+    private void Update()
+    {
+        if(Input.GetKey(KeyCode.Q))
+        {
+            if(ignore)
+            {
+                ignore = false;
+            }
+            else if(!ignore)
+            {
+                ignore = true;
+            }
+        }
+        
+    }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(!ignore)
         {
-            Player.transform.position = ResetPlayer.transform.position;
+            if (collision.gameObject.tag == "Player")
+            {
+                Player.transform.position = ResetPlayer.transform.position;
+            }
         }
     }
 }
