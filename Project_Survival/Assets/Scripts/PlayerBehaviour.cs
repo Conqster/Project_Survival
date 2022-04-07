@@ -6,7 +6,7 @@ public class PlayerBehaviour : MonoBehaviour
 {
     // jumping has been implemented yet!!!!
     [SerializeField] private float moveSpeed = 10f;
-    [SerializeField] private float jumpForce = 0.5f;
+    [SerializeField] private float jumpSpeed = 10f;
     [SerializeField] private float gravity = 9.81f;
     [SerializeField] private float turnSpeed = 3f;
     //player inputs
@@ -156,7 +156,7 @@ public class PlayerBehaviour : MonoBehaviour
                 FindObjectOfType<AudioManager>().AudioTrigger(AudioManager.SoundFXCat.Jump, transform.position, 1f);
                 jumping = true;
                 //rb.AddForce(transform.up * jumpForce);
-                rb.velocity = new Vector3(0, 10, 0);
+                rb.velocity = new Vector3(0, jumpSpeed, 0);
             }
         }
         

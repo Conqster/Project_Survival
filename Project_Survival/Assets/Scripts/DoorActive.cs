@@ -9,6 +9,9 @@ public class DoorActive : MonoBehaviour
     UIManager _uiSystem;
     [SerializeField] int batteries;
     [SerializeField] string CongratsMessage, errorMessage, clueMessage;
+    [SerializeField] Transform Door, NewPosition;
+
+    bool complete = false, openDoor;
 
     private void Start()
     {
@@ -19,6 +22,18 @@ public class DoorActive : MonoBehaviour
     private void Update()
     {
         batteries = _playerManager.playerBattery;
+        GetInput();
+
+        if(batteries == 3 && complete)
+        {
+            openDoor = true;
+            //Door.position = Vector3.right * Time.deltaTime;
+        }
+
+        if(openDoor)
+        {
+            Door.position = Vector3.Lerp(Door.position, NewPosition.position, 0.1f);
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -45,6 +60,11 @@ public class DoorActive : MonoBehaviour
             }
 
         }
+    }
+
+    void GetInput()
+    {
+        complete = Input.GetKeyDown(KeyCode.E);
     }
 
     private void OnTriggerExit(Collider other)
